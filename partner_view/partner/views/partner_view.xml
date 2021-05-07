@@ -5,16 +5,17 @@
 		<field name="model">student</field>
 		<field name="arch" type="xml">
 			<tree string="student_List">
-				<field name="email"/>
 				<field name="name"/>
-				<field name="age"/>
+				<field name="email"/>
 				<field name="gender" widget="radio"/>
+				<field name="hobbies_ids" widget="many2many_tags"/>
 				<field name="address"/>
 				<field name="mobile_no"/>
 				<field name="birthday"/>
+				<field name="age"/>
+				<field name="image" widget='image' class="oe_left oe_avatar" options='{"size": [90, 90]}'/>
 				<field name="password"/>
 				<field name="college_id"/>
-				<!-- <field name="image" widget="image" class="oe_avatar"/> -->
 			</tree>
 		</field>
 	</record>
@@ -26,41 +27,57 @@
             <calendar date_start="birthday" color="name">
                 <field name="email"/>
                 <field name="name"/>
-				<field name="age"/>
 				<field name="gender" widget="radio"/>
                 <field name="address"/>
                 <field name="mobile_no"/>
                 <field name="birthday" required='1'/>
+				<field name="age"/>
                 <field name="current_date"/>
                 <field name="password"/>
             </calendar>
         </field>
     </record>
-    <!-- <record id="student_gantt" model="ir.ui.view">
+    <record id="student_gantt" model="ir.ui.view">
         <field name="name">student.gantt</field>
         <field name="model">student</field>
         <field name="arch" type="xml">
-            <gantt date_start="birthday"widget date_stop="current_date">
+            <gantt date_start="birthday" date_stop="current_date">
             </gantt>
         </field>
-    </record> -->
+    </record>
 	<record id="student_form" model="ir.ui.view">
 		<field name="name">student Form</field>
 		<field name="model">student</field>
 		<field name="arch" type="xml">
 			<form string="student Form">
 				<sheet>
-					<group>
-						<field name="email"/>
-						<field name="name"/>
-						<field name="age"/>
-						<field name="gender" widget="radio"/>
-						<field name="address"/>
-						<field name="mobile_no"/>
-						<field name="birthday"/>
-						<field name="current_date"/>
-						<field name="password"/>
-					</group>
+				<notebook>
+					<page string="Personal Details">
+						<group>
+							<field name="name"/>
+							<field name="email"/>						
+							<field name="gender" widget="radio"/>
+							<field name="hobbies_ids" widget="many2many_tags"/>
+							<field name="address"/>
+							<field name="mobile_no"/>
+							<field name="birthday"/>
+							<field name="age"/>
+							<field name="image" widget="image" class="oe_avatar"/>
+							<field name="current_date"/>
+							<field name="password"/>
+						</group>
+					</page>
+					<page string="Marks Details">
+						<group>
+							<field name="philosophy"/>
+							<field name="geography"/>
+							<field name="psychology"/>
+							<field name="total"/>
+							<field name="average"/>
+							<field name="total_compute"/>
+						</group>
+					</page>
+				</notebook>
 				</sheet>
 			</form>
 		</field>
@@ -132,7 +149,7 @@
 		<field name="arch" type="xml">
 			<tree>
 				<field name="name"/>
-				<!-- <field name="city"/> -->
+				<field name="st_record"/>
 			</tree>
 		</field>
 	</record>
@@ -145,7 +162,6 @@
 				<sheet>
 					<group>
 						<field name="name"/>
-						<!-- <field name="city"/> -->
 					</group>
 				</sheet>
 			</form>
@@ -155,7 +171,7 @@
 	<record id="student_action" model="ir.actions.act_window">
 		<field name="name">Student</field>
 		<field name="res_model">student</field>
-		<field name="view_mode">tree,calendar,form,kanban,graph,pivot,search</field> 
+		<field name="view_mode">tree,calendar,form,kanban,graph,pivot,search,gantt</field> 
 	</record>
 
 	<record id="college_action" model="ir.actions.act_window">
@@ -166,5 +182,5 @@
 
 	<menuitem id="student_menu" name="Student Data"/>
 	<menuitem id="student" name="Details" sequence="1" action="student_action" parent="student_menu"/>
-	<menuitem id="college" name="College menu" action="college_action" parent="student_menu"/>
+	<menuitem id="college_menu" name="College menu" action="college_action" parent="student_menu"/>
 </odoo>

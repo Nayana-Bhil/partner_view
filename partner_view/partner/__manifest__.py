@@ -15,6 +15,8 @@
         'security/ir.model.access.csv',
         'data/data.xml',
         'views/partner_view.xml',
+        'wizard/st_wizard.xml',
+        'report/student_report.xml',
     ],
 
     'application' : True
