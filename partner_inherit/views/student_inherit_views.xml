@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <odoo>
-	<record id="student_inherit_form" model="ir.ui.view">
-		<field name="name">studentInherit Form</field>
-		<field name="model">student</field>
-		<field name="inherit_id" ref="student_form"/>
-		<field name="arch" type="xml"/>
-		<field name="name" position="after"/>
-		<field name="review"/>
-	</record>
+	<record id="student_view_tree_inh" model="ir.ui.view">
+        <field name="name">Student.tree</field>
+        <field name="model">student.inherit</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="email"/>
+				<field name="college_id"/>
+                <field name="deartment"/>
+                <field name="review"/>
+            </tree>
+        </field>
+    </record>
+    <record id="student_inh_action" model="ir.actions.act_window" >
+        <field name="name">Student</field>
+        <field name="res_model">student.inherit</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="inherited_menu" name="Student Inherited Data"/>
+
+    <menuitem id="student_menu" name="Details" sequence="1" action="student_inh_action" parent="inherited_menu"/>
 </odoo>

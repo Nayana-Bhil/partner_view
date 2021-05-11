@@ -12,11 +12,8 @@
             
 
     'data' : [
-    #     'security/ir.model.access.csv',
-    #     'data/data.xml',
+        'security/ir.model.access.csv',
         'views/student_inherit_views.xml',
-        # 'wizard/st_wizard.xml',
-        # 'report/student_report.xml',
     ],
 
     'application' : True
