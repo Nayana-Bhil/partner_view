@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_student,access_student,model_student,base.group_user,1,1,1,1 
+access_student_college,access_student_college,model_student_college,base.group_user,1,1,1,1 
+access_student_hobbies,access_student_hobbies,model_student_hobbies,base.group_user,1,1,1,1 
+access_student_wizard,access_student_wizard,model_student_wizard,base.group_user,1,1,1,1 
