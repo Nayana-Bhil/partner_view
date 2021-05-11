@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="partner1" model="student">
+            <field name="email">neha@gmail.com</field>
+            <field name="name">Neha Trivedi</field>
+            <field name="address">mahuva</field>
+            <field name="mobile_no">89567524</field>
+            <field name="password">12345</field>
+        </record>
+        <record id="partner2" model="student">
+            <field name="email">urvi@gmail.com</field>
+            <field name="name">Urvashi Joshi</field>
+            <field name="address">mahuva</field>
+            <field name="mobile_no">78969693</field>
+        </record>
+        <record id="partner3" model="student">
+            <field name="email">disha@gmail.com</field>
+            <field name="name">Disha Mehta</field>
+            <field name="address">bhuj</field>
+            <field name="mobile_no">85783214</field>
+            <field name="password">12345</field>
+        </record>
+        <record id="college1" model="student.college">
+            <field name="name">SIT</field>
+        </record>
+    </data>
+</odoo>
