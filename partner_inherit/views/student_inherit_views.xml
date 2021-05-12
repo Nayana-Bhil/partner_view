@@ -14,6 +14,18 @@
             </tree>
         </field>
     </record>
+
+    <record id="college_view_form" model="ir.ui.view">
+        <field name="name">college.form</field>
+        <field name="model">student.college</field>
+        <field name="inherit_id" ref="partner.college_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='city']" position="after">
+              <field name="st_record"/>
+            </xpath>
+        </field>
+    </record>
+    
     <record id="student_inh_action" model="ir.actions.act_window" >
         <field name="name">Student</field>
         <field name="res_model">student.inherit</field>
