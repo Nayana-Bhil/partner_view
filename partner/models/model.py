@@ -1,6 +1,7 @@
 from odoo import  fields, models, api
 from datetime import timedelta, datetime, date
 from dateutil.relativedelta import relativedelta
+from odoo.exceptions import ValidationError
 
 class user(models.Model):
     _name = 'student'
@@ -8,7 +9,7 @@ class user(models.Model):
 
     email = fields.Char(string="Email id")
     name = fields.Char(string="Name")
-    age = fields.Char(compute="_calculate_age", store=True)
+    age = fields.Integer(compute="_calculate_age", store=True)
     gender = fields.Selection([('male', 'Male'), ('female', 'Female')], default='male')
     address = fields.Text(string="Address")
     mobile_no = fields.Char(string="Contact No")
@@ -27,6 +28,24 @@ class user(models.Model):
     average = fields.Float()
     total_compute = fields.Integer(compute="_compute_total", store=True)
 
+class College(models.Model):
+    _name = 'student.college'
+
+    name = fields.Char("College Name")
+    city = fields.Char("Name of City")
+    st_record = fields.One2many('student', 'college_id', string="Student Record")
+
+class College(models.Model):
+    _name = 'student.hobbies'
+
+    name = fields.Char("Hobbies")
+
+class fullname(models.Model):
+    _inherit = 'student'
+
+    full_name = fields.Char("Full Name")
+
+
     @api.depends('birthday')
     def _calculate_age(self):
         for i in self:
@@ -43,18 +62,9 @@ class user(models.Model):
         for rec in self:
             rec.total_compute = rec.philosophy + rec.geography + rec.psychology
 
-class College(models.Model):
-    _name = 'student.college'
+    @api.constrains('age')
+    def _age_constraint(self):
+        if self.age < 18:
+            raise ValidationError('Age must be more than or equals to 18')
 
-    name = fields.Char("College Name")
-    st_record = fields.One2many('student', 'college_id', string="Student Record")
-
-class College(models.Model):
-    _name = 'student.hobbies'
-
-    name = fields.Char("Hobbies")
-
-class fullname(models.Model):
-    _inherit = 'student'
-
-    full_name = fields.Char("Full Name")
+    
